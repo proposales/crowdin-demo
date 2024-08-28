@@ -1,0 +1,13 @@
+project_id: "todo"
+api_token: "todo"
+files:
+  - source: /packages/ui/locales/viewer/en.json
+    translation: /packages/ui/locales/viewer/%two_letters_code%.json
+  - source: /packages/ui/locales/inbox-forms/en.json
+    translation: /packages/ui/locales/inbox-forms/%two_letters_code%.json
+  - source: /packages/ui/locales/website/en.json
+    translation: /packages/ui/locales/website/%two_letters_code%.json
+  - source: /packages/ui/locales/example/en.json
+    translation: /packages/ui/locales/example/%two_letters_code%.json
+  - source: /packages/ui/locales/editor/en.json
+    translation: /packages/ui/locales/editor/%two_letters_code%.json
