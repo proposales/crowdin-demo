@@ -1,0 +1,35 @@
+name: crowdin-translations
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 * * * *
+  workflow_call:
+    secrets:
+      TOKEN_FOR_GITHUB_CREATE_BRANCHES:
+        required: true
+
+jobs:
+  synchronize-with-crowdin:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: crowdin-sync-translations
+        uses: crowdin/github-action@v2
+        with:
+          config: './crowdin.yml'
+          upload_sources: true
+          upload_translations: false
+          download_translations: true
+          localization_branch_name: translations
+          create_pull_request: true
+          pull_request_title: '🤖 New Crowdin Translations'
+          pull_request_body: 'New Crowdin translations by [Crowdin GH Action](https://github.com/crowdin/github-action)'
+          pull_request_base_branch_name: 'develop'
+          import_eq_suggestions: true
+          skip_untranslated_strings: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_FOR_GITHUB_CREATE_BRANCHES }}
